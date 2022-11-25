@@ -4,42 +4,61 @@ import { AuthContext } from '../../Context/AuthProvider';
 import './Login.css';
 import { FaGoogle } from 'react-icons/fa';
 import loginImg from '../../images/Sign in.gif';
+import useToken from '../../hooks/useToken';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 const Login = () => {
-    const [message, setMessage] = useState(null);
+    const { register, reset, formState: { errors }, handleSubmit } = useForm();
     const { signInWithGoogle, logInWithEmailAndPassword } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
-    const handleLogInButton = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-
-        logInWithEmailAndPassword(email, password)
+    const handleLogin = (data) => {
+        setLoginError('');
+        logInWithEmailAndPassword(data.email, data.password)
             .then((userCredential) => {
-                setMessage('Successfully logged in!');
-                form.reset();
-                navigate(from, { replace: true });
+                reset();
+                setLoginUserEmail(data.email);
             })
             .catch((error) => {
-                setMessage(error?.message);
+                setLoginError(error.message);
             });
     }
 
 
     const handleGoogleSignIN = () => {
+        setLoginError('');
         signInWithGoogle()
             .then((result) => {
-                console.log(result.user);
-                navigate(from, { replace: true });
+                const {displayName,email} = result.user;
+                saveUser(displayName, email,'buyer');
             })
             .catch((error) => {
-                console.log(error.message);
-                alert(error.message);
+                toast.error(error.message);
+            })
+    }
+
+    const saveUser = (name, email, role) => {
+        const user = { name, email,role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setLoginUserEmail(email);
             })
     }
 
@@ -52,23 +71,30 @@ const Login = () => {
                 <div className="col-lg-5">
                     <div className='rounded p-5 theme-color-shadow'>
                         <h3 className='theme-color fw-bolder'>Please Sign In !!</h3>
-                        <form onSubmit={handleLogInButton}>
+                        <form onSubmit={handleSubmit(handleLogin)}>
                             <div className="mb-3">
                                 <label htmlFor="email" className="form-label text-muted fw-bold">Email address</label>
-                                <input type="email" name='email' className="form-control" id="email" required />
+                                <input type="email" {...register("email", {
+                                    required: "Email Address is required"
+                                })} className="form-control" id="email" />
+                                {errors.email && <p className='text-danger'>{errors.email?.message}</p>}
                             </div>
                             <div className="mb-3">
                                 <label htmlFor="password" className="form-label text-muted fw-bold">Password</label>
-                                <input type="password" name="password" className="form-control" id="password" required />
+                                <input type="password" {...register("password", {
+                                    required: "Password is required",
+                                    minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                                })} className="form-control" id="password" />
+                                {errors.password && <p className='text-danger'>{errors.password?.message}</p>}
                             </div>
                             <div className="mb-3 form-check">
                                 <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                                 <label className="form-check-label text-muted" htmlFor="exampleCheck1 ">Remember me</label>
                             </div>
-                            <div className="mb-3">
-                                <p className='text-warning'>{message}</p>
-                            </div>
                             <button type="submit" className="theme-button rounded form-control">Sign In</button>
+                            <div>
+                                {loginError && <p className='text-red-600'>{loginError}</p>}
+                            </div>
                         </form>
                         <div className='text-muted my-3 text-center'>
                             Don't have a account ? Please <Link to='/Register' className='register-login-link text-decoration-none theme-color fw-bold'>Register</Link>
