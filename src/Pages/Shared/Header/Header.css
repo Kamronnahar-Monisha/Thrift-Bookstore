@@ -1,0 +1,15 @@
+.logo{
+    width:35px;
+    height: 35px;
+}
+.logo-text{
+    position: relative;
+    color:#ff9302;
+    top: 5px;
+    font-size: 28px;
+    font-family: 'Kumar One', cursive;
+    margin-left: 2px;
+}
+.btn-sm{
+    padding:3px 15px !important;
+}

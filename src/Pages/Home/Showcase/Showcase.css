@@ -1,0 +1,27 @@
+.showcase{
+    font-family: 'Roboto', sans-serif;
+}
+.showcase h3{
+    font-size: 40px;
+    font-weight: bold;
+}
+.showcase span{
+    color:#ff9302;
+}
+.theme-color{
+    color:#ff9302;
+}
+.theme-button{
+    color:white;
+    background-color: #ff9302;
+    border-radius: 5px;
+    border:3px solid #ff9302;
+    padding:10px 20px;
+}
+.theme-button-hover:hover,.theme-button-outline{
+    color:#ff9302;
+    background-color:white;
+    border-radius: 5px;
+    border:3px solid #ff9302;
+    padding:10px 20px;
+}
