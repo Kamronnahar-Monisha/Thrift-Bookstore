@@ -8,7 +8,7 @@ const PrivateRoute = ({children}) => {
     const { loading, user } = useContext(AuthContext);
     let location = useLocation();
     if (loading) {
-        return (<div className='private-route-spinner'>
+        return (<div className='route-spinner'>
             <Loader></Loader>
         </div>);
     }

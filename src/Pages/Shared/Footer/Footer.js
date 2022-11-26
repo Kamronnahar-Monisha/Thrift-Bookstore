@@ -6,7 +6,7 @@ import { FaFacebookSquare, FaWhatsappSquare, FaInstagramSquare } from 'react-ico
 
 const Footer = () => {
     return (
-        <div className='footer bg-dark mt-5 py-5 text-white'>
+        <div className='footer bg-dark py-5 text-white'>
             <div className="container">
                 <div className="row justify-content-around align-items-center">
                     <div className="col-lg-4">
@@ -45,7 +45,7 @@ const Footer = () => {
                         <h4 className='mb-4'>HelpLine</h4>
                         <Link className="text-decoration-none text-white d-block mb-2">Support Center</Link>
                         <Link className="text-decoration-none text-white d-block mb-2">Feedback</Link>
-                        <Link className="text-decoration-none text-white d-block mb-2">PrAccessability</Link>
+                        <Link className="text-decoration-none text-white d-block mb-2">Accessability</Link>
                     </div>
                 </div>
                 <div className='text-center m-5'>

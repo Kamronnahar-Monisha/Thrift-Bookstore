@@ -12,7 +12,7 @@ const Header = () => {
         logOut()
             .then(() => {
                 localStorage.removeItem('accessToken');
-             })
+            })
             .catch((error) => {
                 console.error(error.massage);
             })
@@ -36,6 +36,12 @@ const Header = () => {
                             <li className="nav-item ms-3">
                                 <Link className="nav-link text-white" to="/blog">Blog</Link>
                             </li>
+                            {
+                                user &&
+                                <li className="nav-item ms-3">
+                                    <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>
+                                </li>
+                            }
                             <li className="nav-item ms-3">
                                 {
                                     user ?

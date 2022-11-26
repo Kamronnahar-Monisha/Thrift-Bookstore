@@ -5,19 +5,44 @@ import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 
 const ProductModal = ({ modalProduct }) => {
-    const { name, resalePrice: price,_id ,sellerEmail} = modalProduct;
+    const { name, resalePrice: price, _id, sellerEmail } = modalProduct;
 
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const handleModalSubmitButton = (data) => {
-                const order ={
-                    "productId" : _id,
-                    "buyerEmail" : user.email,
-                    sellerEmail ,
-                    "buyerMobile":data.mobileNo,
-                    "meetingLocation" : data.meetingLocation
-                };
+        const order = {
+            "productId": _id,
+            "buyerEmail": user.email,
+            sellerEmail,
+            "buyerMobile": data.mobileNo,
+            "meetingLocation": data.meetingLocation,
+            "paid": false
+        };
+        reset();
+
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res =>{
+                if(res.status === 403){
+                    toast.error('Sorry!!Only Buyer can book an item.');
+                }
+                if(res.status === 401){
+                    toast.error('Unauthorized Access');
+                }
+                return res.json()
+            })
+            .then(data => {
+                if(data?.acknowledged){
+                    toast.success('Successfully booked this item .');
+                }
+            });
     }
 
     console.log(user);
@@ -72,7 +97,7 @@ const ProductModal = ({ modalProduct }) => {
                                     {errors.meetingLocation && <p className='text-danger'>{errors.meetingLocation.message}</p>}
                                 </div>
                                 <div className='text-center'>
-                                    <button onClick={() => toast.success('Product booked successfully')} type="submit" className="btn-sm theme-button-outline" data-bs-dismiss="modal">Submit</button>
+                                    <button type="submit" className="btn-sm theme-button-outline" data-bs-dismiss="modal">Submit</button>
                                 </div>
                             </form>
                         </div>

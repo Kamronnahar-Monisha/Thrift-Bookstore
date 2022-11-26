@@ -48,7 +48,12 @@ const Login = () => {
     }
 
     const saveUser = (name, email, role) => {
-        const user = { name, email,role };
+        const user = { 
+             name,
+             email,
+             role, 
+             "verified":false 
+            };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
