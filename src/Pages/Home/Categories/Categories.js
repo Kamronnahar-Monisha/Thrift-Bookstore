@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './Categories.css';
 import axios from 'axios';
 import Category from '../Category/Category';
+import Loader from '../../Shared/Loader/Loader';
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         axios.get('http://localhost:5000/categories')
-            .then(res=>{
+            .then(res => {
                 setCategories(res.data);
             })
-            .catch(err=>console.log(err));
+            .catch(err => console.log(err));
     }, [])
 
     return (
@@ -22,13 +23,18 @@ const Categories = () => {
                 </p>
             </div>
             <div className="container">
-                <div className="row">
-                    {
-                        categories.map(category => <Category
-                            key={category._id} category={category}
-                        ></Category>)
-                    }
-                </div>
+                {
+                    categories.length ?
+                        <div className="row justify-content-center align-items-center g-5">
+                            {
+                                categories.map(category => <Category
+                                    key={category._id} category={category}
+                                ></Category>)
+                            }
+                        </div>
+                        :
+                        <Loader></Loader>
+                }
             </div>
         </div>
     );

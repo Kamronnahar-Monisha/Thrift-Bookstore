@@ -34,6 +34,9 @@ const Header = () => {
                                 <Link className="nav-link text-white" to="/home">Home</Link>
                             </li>
                             <li className="nav-item ms-3">
+                                <Link className="nav-link text-white" to="/blog">Blog</Link>
+                            </li>
+                            <li className="nav-item ms-3">
                                 {
                                     user ?
                                         <>
