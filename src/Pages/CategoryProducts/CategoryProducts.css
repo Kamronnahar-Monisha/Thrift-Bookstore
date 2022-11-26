@@ -1,0 +1,11 @@
+.loader-bottom-margin{
+    margin-bottom:500px;
+}
+.custom-hr{
+    border: none;
+    padding:2px;
+    width: 200px;
+    margin:0 auto;
+    background-color:#ff9302;
+    opacity: 1;
+}
