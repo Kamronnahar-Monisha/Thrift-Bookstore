@@ -45,10 +45,10 @@ const DashboardLayout = () => {
                                         <FaYelp className="theme-color me-2" />
                                         <Link to="/dashboard/myProduct" className='text-decoration-none text-dark'>My Product</Link>
                                     </li>
-                                    <li className='py-3 fs-5'>
+                                    {/* <li className='py-3 fs-5'>
                                         <FaYelp className="theme-color me-2" />
                                         <Link to="/dashboard/myBuyers" className='text-decoration-none text-dark'>My Buyers</Link>
-                                    </li>
+                                    </li> */}
                                 </>
                             }
                             {
