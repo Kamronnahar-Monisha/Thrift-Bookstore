@@ -1,14 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AddAProduct from "../Pages/AddAProduct/AddAProduct/AddAProduct";
 import Blog from "../Pages/Blog/Blog";
 import CategoryProducts from "../Pages/CategoryProducts/CategoryProducts";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+import MyOrder from "../Pages/Dashboard/MyOrder/MyOrder/MyOrder";
+import MyProduct from "../Pages/Dashboard/MyProduct/MyProduct/MyProduct";
+import WishList from "../Pages/Dashboard/WishList/WishList/WishList";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Register from "../Pages/Register/Register";
+import BuyerRoute from "./BuyerRoute/BuyerRoute";
 import PrivateRoute from "./PrivateRoute.js/PrivateRoute";
+import SellerRoute from "./SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
     {
@@ -59,11 +65,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/addAProduct',
-                element:<Dashboard></Dashboard>
+                element:<SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myProduct',
-                element:<Dashboard></Dashboard>
+                element:<SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myBuyers',
@@ -71,11 +77,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myOrders',
-                element:<Dashboard></Dashboard>
+                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
             },
             {
                 path: '/dashboard/myWishlist',
-                element:<Dashboard></Dashboard>
+                element:<BuyerRoute><WishList></WishList></BuyerRoute>
             },
         ]
     },

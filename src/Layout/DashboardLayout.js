@@ -19,7 +19,7 @@ const DashboardLayout = () => {
         <div>
             <Header></Header>
             <div className="container">
-                <div className="row">
+                <div className="row justify-content-center">
                     <div className="col-lg-2 side-nav py-5">
                         <ul>
                             {

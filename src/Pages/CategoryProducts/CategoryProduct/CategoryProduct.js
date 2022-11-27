@@ -4,10 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { FaCheckCircle } from 'react-icons/fa';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
+import { useLogOutTheUser } from '../../../hooks/useLogOutTheUser';
 
 const CategoryProduct = ({ categoryProduct, setModalProduct }) => {
-    const { img, name, location, resalePrice, originalPrice, yearsOfUse, postTime, sellerEmail, description ,_id} = categoryProduct;
+    const { img, name, location, resalePrice, originalPrice, yearsOfUse, postTime, sellerEmail, description, _id } = categoryProduct;
     const { user } = useContext(AuthContext);
+    const logOutUser = useLogOutTheUser();
     const { data: seller = {}, refetch, isLoading } = useQuery({
         queryKey: ['seller', sellerEmail],
         queryFn: async () => {
@@ -37,6 +39,7 @@ const CategoryProduct = ({ categoryProduct, setModalProduct }) => {
                 }
                 if (res.status === 401) {
                     toast.error('Unauthorized Access');
+                    logOutUser();
                 }
                 return res.json()
             })
@@ -51,12 +54,12 @@ const CategoryProduct = ({ categoryProduct, setModalProduct }) => {
             <div className='shadow rounded'>
                 <div className='p-3 text-center'>
                     <img src={img} alt="category" className='w-100 rounded' height="500px" />
-                    <p className='fs-4 text-capitalize theme-color'>
-                        {name}
+                    <p className='fs-4 text-capitalize theme-color'>{name}</p>
+                    <p>{(description.length > 150) ? description.substr(0, 150) + "...see more" : description}</p>
+                    <p className='text-capitalize text-muted'>
+                        Seller : {seller.name}
                         {seller.verified && <FaCheckCircle className='text-primary ms-1' />}
                     </p>
-                    <p>{(description.length > 150) ? description.substr(0, 150) + "...see more" : description}</p>
-                    <p className='text-capitalize text-muted'>Seller : {seller.name}</p>
                     <p className='text-capitalize text-muted'>location : {location}</p>
                     <p className='text-capitalize text-muted'>resalePrice : {resalePrice}$</p>
                     <p className='text-capitalize text-muted'>originalPrice : {originalPrice}$</p>

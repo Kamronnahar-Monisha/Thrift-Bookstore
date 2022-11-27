@@ -3,21 +3,23 @@ import './ProductModal.css';
 import { AuthContext } from '../../../Context/AuthProvider';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import { useLogOutTheUser } from '../../../hooks/useLogOutTheUser';
 
 const ProductModal = ({ modalProduct }) => {
     const { name, resalePrice: price, _id, sellerEmail } = modalProduct;
 
     const { user } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const logOutUser = useLogOutTheUser();
 
     const handleModalSubmitButton = (data) => {
         const order = {
-            "productId": _id,
-            "buyerEmail": user.email,
+            productId: _id,
+            buyerEmail: user.email,
             sellerEmail,
-            "buyerMobile": data.mobileNo,
-            "meetingLocation": data.meetingLocation,
-            "paid": false
+            buyerMobile: data.mobileNo,
+            meetingLocation: data.meetingLocation,
+            paid: false
         };
         reset();
 
@@ -29,17 +31,18 @@ const ProductModal = ({ modalProduct }) => {
             },
             body: JSON.stringify(order)
         })
-            .then(res =>{
-                if(res.status === 403){
+            .then(res => {
+                if (res.status === 403) {
                     toast.error('Sorry!!Only Buyer can book an item.');
                 }
-                if(res.status === 401){
+                if (res.status === 401) {
                     toast.error('Unauthorized Access');
+                    logOutUser();
                 }
                 return res.json()
             })
             .then(data => {
-                if(data?.acknowledged){
+                if (data?.acknowledged) {
                     toast.success('Successfully booked this item .');
                 }
             });
@@ -93,7 +96,7 @@ const ProductModal = ({ modalProduct }) => {
                                     <label htmlFor="meetingLocation" className="form-label text-muted fw-bold">Meeting Location</label>
                                     <input type="text" {...register("meetingLocation", {
                                         required: "Meeting Location is Required"
-                                    })} className="form-control" id="meetingLocation" />
+                                    })} className="form-control" id="meetingLocation"/>
                                     {errors.meetingLocation && <p className='text-danger'>{errors.meetingLocation.message}</p>}
                                 </div>
                                 <div className='text-center'>
