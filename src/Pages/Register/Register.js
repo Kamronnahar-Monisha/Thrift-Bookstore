@@ -27,7 +27,7 @@ const Register = () => {
                 reset();
                 toast.success('User Created Successfully.');
                 console.log(data);
-                createProfileInformation(data.name, data.photoUrl, data); 
+                createProfileInformation(data.name, data.photoUrl, data);
             })
             .catch((error) => {
                 setSignUPError(error.message);
@@ -38,11 +38,11 @@ const Register = () => {
     const createProfileInformation = (name, photoURL, data) => {
         const profile = {
             displayName: name,
-            photoURL: photoURL
+            photoURL
         }
         createProfile(profile)
             .then(() => {
-                saveUser(data.name, data.email,data.role);
+                saveUser(data.name, data.email, data.role);
             })
             .catch((error) => {
                 console.log(error.message);
@@ -51,7 +51,7 @@ const Register = () => {
 
 
     const saveUser = (name, email, role) => {
-        const user = { name, email,role ,"verified":false };
+        const user = { name, email, role, "verified": false };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -105,23 +105,15 @@ const Register = () => {
                                 })} className="form-control" id="Password" />
                                 {errors.password && <p className='text-danger'>{errors.password.message}</p>}
                             </div>
-                            <div>
-                                <div class="form-check">
-                                    <input className="form-check-input text-muted" {...register('role', { required: "User type is required" })} type="radio" name="role" id="buyer" value="buyer" checked />
-                                    <label classNames="form-check-label text-muted" for="buyer">
-                                        Buyer
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input className="form-check-input" {...register('role', { required: "User type is required" })} type="radio" name="role" id="seller" value="seller" />
-                                    <label className="form-check-label text-muted" for="seller">
-                                        Seller
-                                    </label>
-                                </div>
-                                <div className="text-danger mt-3">
-                                    {errors.userRole && <p className='text-danger'>{errors.userRole.message}</p>}
-                                </div>
+                            <div className="mb-3">
+                                <label htmlFor="role" className="form-label text-muted fw-bold">Choose Your Role</label>
+                                <select  {...register('role', { required: "User type is required" })} className="form-select" aria-label="Default select" id="role">
+                                    <option value="buyer" selected>Buyer</option>
+                                    <option value="seller">Seller</option>
+                                </select>
+                                {errors.role && <p className='text-danger'>{errors.role.message}</p>}
                             </div>
+
                             <div className="mb-3 form-check">
                                 <input type="checkbox" {...register("condition", {
                                     required: "Term and condition should be accepted"
