@@ -14,7 +14,7 @@ const Buyer = ({ buyer, refetch }) => {
         if (!proceed) {
             return;
         }
-        fetch(`http://localhost:5000/users/${_id}?email=${user.email}`, {
+        fetch(`https://thrift-bookstore-server-side.vercel.app/users/${_id}?email=${user.email}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

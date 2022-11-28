@@ -7,7 +7,7 @@ import Loader from '../../Shared/Loader/Loader';
 const Categories = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/categories')
+        axios.get('https://thrift-bookstore-server-side.vercel.app/categories')
             .then(res => {
                 setCategories(res.data);
             })

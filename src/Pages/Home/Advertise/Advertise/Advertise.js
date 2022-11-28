@@ -5,7 +5,7 @@ import './Advertise.css';
 const Advertise = () => {
     const [advertiseItems, setAdvertiseItems] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/advertise')
+        fetch('https://thrift-bookstore-server-side.vercel.app/advertise')
             .then(res => res.json())
             .then(data => setAdvertiseItems(data));
     }, [])

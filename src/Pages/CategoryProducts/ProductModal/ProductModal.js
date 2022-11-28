@@ -23,7 +23,7 @@ const ProductModal = ({ modalProduct }) => {
         };
         reset();
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://thrift-bookstore-server-side.vercel.app/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

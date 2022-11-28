@@ -21,7 +21,7 @@ const Payment = () => {
     const logOutUser = useLogOutTheUser();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}?email=${user.email}`, {
+        fetch(`https://thrift-bookstore-server-side.vercel.app/products/${productId}?email=${user.email}`, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }

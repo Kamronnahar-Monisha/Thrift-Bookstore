@@ -15,7 +15,7 @@ const EachProduct = ({ product, refetch }) => {
         if (!proceed) {
             return;
         }
-        fetch(`http://localhost:5000/products/${_id}?email=${user.email}`, {
+        fetch(`https://thrift-bookstore-server-side.vercel.app/products/${_id}?email=${user.email}`, {
             method: "DELETE",
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -42,7 +42,7 @@ const EachProduct = ({ product, refetch }) => {
             advertised: value
         }
 
-        fetch(`http://localhost:5000/products/${_id}?email=${user.email}`, {
+        fetch(`https://thrift-bookstore-server-side.vercel.app/products/${_id}?email=${user.email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

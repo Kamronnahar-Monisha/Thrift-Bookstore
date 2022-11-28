@@ -14,7 +14,7 @@ const MyOrder = () => {
     const { data: myOrder = [], refetch, isLoading } = useQuery({
         queryKey: ['myOrder', user.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/orders?email=${user.email}`,{
+            const res = await fetch(`https://thrift-bookstore-server-side.vercel.app/orders?email=${user.email}`,{
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

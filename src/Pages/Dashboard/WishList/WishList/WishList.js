@@ -14,7 +14,7 @@ const WishList = () => {
     const { data: wishList = [], refetch, isLoading } = useQuery({
         queryKey: ['wishList', user.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/wishList?email=${user.email}`, {
+            const res = await fetch(`https://thrift-bookstore-server-side.vercel.app/wishList?email=${user.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }

@@ -13,7 +13,7 @@ const CategoryProducts = () => {
     const { data: categoryProducts = [], refetch, isLoading } = useQuery({
         queryKey: ['categoryProducts', categoryId],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/categories/${categoryId}`);
+            const res = await fetch(`https://thrift-bookstore-server-side.vercel.app/categories/${categoryId}`);
             const data = await res.json();
             return data;
         }

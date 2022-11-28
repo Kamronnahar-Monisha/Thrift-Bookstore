@@ -13,7 +13,7 @@ const CategoryProduct = ({ categoryProduct, setModalProduct }) => {
     const { data: seller = {}, refetch, isLoading } = useQuery({
         queryKey: ['seller', sellerEmail],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users?email=${sellerEmail}`);
+            const res = await fetch(`https://thrift-bookstore-server-side.vercel.app/users?email=${sellerEmail}`);
             const data = await res.json();
             return data;
         }
@@ -25,7 +25,7 @@ const CategoryProduct = ({ categoryProduct, setModalProduct }) => {
             sellerEmail
         };
 
-        fetch('http://localhost:5000/wishList', {
+        fetch('https://thrift-bookstore-server-side.vercel.app/wishList', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

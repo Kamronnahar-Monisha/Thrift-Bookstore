@@ -54,7 +54,7 @@ const Login = () => {
              role, 
              "verified":false 
             };
-        fetch('http://localhost:5000/users', {
+        fetch('https://thrift-bookstore-server-side.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

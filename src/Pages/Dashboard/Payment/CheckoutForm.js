@@ -20,7 +20,7 @@ const CheckoutForm = ({ order, product }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://thrift-bookstore-server-side.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const CheckoutForm = ({ order, product }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch(`http://localhost:5000/users?email=${buyerEmail}`)
+        fetch(`https://thrift-bookstore-server-side.vercel.app/users?email=${buyerEmail}`)
             .then((res) => res.json())
             .then((data) => setBuyer(data));
     }, [buyerEmail]);
@@ -94,7 +94,7 @@ const CheckoutForm = ({ order, product }) => {
                 buyerEmail,
                 orderId: orderID
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://thrift-bookstore-server-side.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

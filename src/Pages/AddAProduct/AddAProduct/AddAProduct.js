@@ -34,7 +34,7 @@ const AddAProduct = () => {
         };
         reset();
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://thrift-bookstore-server-side.vercel.app/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
