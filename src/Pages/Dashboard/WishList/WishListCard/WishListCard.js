@@ -40,7 +40,7 @@ const WishListCard = ({wishListItem}) => {
                         product.status==='sold' ?
                             <button className='btn-sm theme-button' disabled> Sold out</button>
                             :
-                            <Link to='/purchase'>
+                            <Link>
                                 <button className='btn-sm theme-button'> Pay</button>
                             </Link>
 

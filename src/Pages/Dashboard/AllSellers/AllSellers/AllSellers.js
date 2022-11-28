@@ -30,7 +30,7 @@ const AllSellers = () => {
     });
     return (
         <div className='my-5'>
-            <table className="table table-hover">
+            <table className="table table-hover table-responsive">
                 <tbody>
                     {
                         isLoading?

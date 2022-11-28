@@ -62,7 +62,7 @@ const Seller = ({ seller, refetch }) => {
 
     return (
         <tr className='text-muted'>
-            <td>{name}</td>
+            <td className='d-none d-md-block'>{name}</td>
             <td>{email}</td>
             <td>
                 {

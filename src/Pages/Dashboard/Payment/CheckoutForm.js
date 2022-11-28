@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ order, product }) => {
@@ -15,7 +16,7 @@ const CheckoutForm = ({ order, product }) => {
     const elements = useElements();
     // const { price, email, patient, _id } = order;
     const { buyerEmail, _id: orderID } = order;
-    const { resalePrice } = product;
+    const { resalePrice ,_id:productId} = product;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -88,6 +89,7 @@ const CheckoutForm = ({ order, product }) => {
             // store payment info in the database
             const payment = {
                 resalePrice,
+                productId,
                 transactionId: paymentIntent.id,
                 buyerEmail,
                 orderId: orderID
@@ -107,6 +109,8 @@ const CheckoutForm = ({ order, product }) => {
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                         setComplete(true);
+                        toast.success("Payment complete successfully");
+                        navigate('/dashboard/myOrders');
                     }
                 })
         }
