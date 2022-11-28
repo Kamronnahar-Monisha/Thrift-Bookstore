@@ -7,5 +7,5 @@ Live Website link : [Thrift Bookstore](https://thrift-bookstore.web.app/)
 * Seller can add his product for sell and see all his product current status.
 * Admin can see all the buyer and seller information and also can delete any user.
 
-# adminEmail: kamronnaharmonisha@gmail.com
-# adminPassword: 123ASD
+#### adminEmail: kamronnaharmonisha@gmail.com
+#### adminPassword: 123ASD
