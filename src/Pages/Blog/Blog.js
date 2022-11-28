@@ -1,9 +1,13 @@
 import React from 'react';
 import './Blog.css';
+import {Helmet} from 'react-helmet-async';
 
 const Blog = () => {
     return (
         <div className='blog '>
+            <Helmet>
+                <title>Blog</title>
+            </Helmet>
             <div className="container">
                 <div className="rounded theme-color-shadow p-5 w-75 mx-auto text-center my-5">
                     <h4 className='theme-color mb-4'>What are the different ways to manage a state in a React application?</h4>

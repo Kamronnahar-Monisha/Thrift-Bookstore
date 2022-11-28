@@ -6,6 +6,7 @@ import { useLogOutTheUser } from '../../../../hooks/useLogOutTheUser';
 import Loader from '../../../Shared/Loader/Loader';
 import Seller from '../Seller/Seller';
 import './AllSellers.css';
+import {Helmet} from 'react-helmet-async';
 
 const AllSellers = () => {
     const { user } = useContext(AuthContext);
@@ -30,6 +31,9 @@ const AllSellers = () => {
     });
     return (
         <div className='my-5'>
+            <Helmet>
+                <title>All Sellers</title>
+            </Helmet>
             <table className="table table-hover table-responsive">
                 <tbody>
                     {

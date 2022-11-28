@@ -6,6 +6,7 @@ import { AuthContext } from '../../../../Context/AuthProvider';
 import { useLogOutTheUser } from '../../../../hooks/useLogOutTheUser';
 import Loader from '../../../Shared/Loader/Loader';
 import MyOrderCard from '../MyOrderCard/MyOrderCard';
+import { Helmet} from 'react-helmet-async';
 
 const MyOrder = () => {
     const {user}=useContext(AuthContext);
@@ -30,6 +31,9 @@ const MyOrder = () => {
     });
     return (
         <div className='container'>
+            <Helmet>
+                <title>Your Orders</title>
+            </Helmet>
             <div className="row justify-content-center align-items-center mb-5 mt-1 g-5">
                 {
                     isLoading?

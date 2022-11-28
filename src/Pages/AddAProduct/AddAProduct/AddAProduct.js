@@ -2,14 +2,15 @@ import React, { useContext } from 'react';
 import './AddAProduct.css';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Context/AuthProvider';
-import {format } from 'date-fns';
+import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import { useLogOutTheUser } from '../../../hooks/useLogOutTheUser';
 import { useNavigate } from 'react-router-dom';
+import { Helmet} from 'react-helmet-async';
 
 const AddAProduct = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const logOutUser = useLogOutTheUser();
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const AddAProduct = () => {
         const product = {
             name: data.productName,
             img: data.productImgUrl,
-            description:data.description,
+            description: data.description,
             resalePrice: data.resalePrice,
             originalPrice: data.originalPrice,
             yearsOfUse: data.yearOfUse,
@@ -62,6 +63,9 @@ const AddAProduct = () => {
 
     return (
         <div className='my-5'>
+            <Helmet>
+                <title>Add Your Product</title>
+            </Helmet>
             <div className='rounded p-5 theme-color-shadow w-75 mx-auto'>
                 <h3 className='theme-color fw-bolder'>Add A Product</h3>
                 <form onSubmit={handleSubmit(handleAddProduct)}>

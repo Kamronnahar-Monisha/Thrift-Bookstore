@@ -6,6 +6,7 @@ import { useLogOutTheUser } from '../../../../hooks/useLogOutTheUser';
 import Loader from '../../../Shared/Loader/Loader';
 import WishListCard from '../WishListCard/WishListCard';
 import './WishList.css';
+import {Helmet} from 'react-helmet-async';
 
 const WishList = () => {
     const { user } = useContext(AuthContext);
@@ -30,6 +31,9 @@ const WishList = () => {
     });
     return (
         <div className='container'>
+            <Helmet>
+                <title>Your Wish List</title>
+            </Helmet>
             <div className="row justify-content-center align-items-center mb-5 mt-1 g-5">
                 {
                     isLoading ?

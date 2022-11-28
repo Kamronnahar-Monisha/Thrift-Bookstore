@@ -3,10 +3,14 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './PageNotFound.css';
 import pageNotFoundImg from '../../images/page-not-found-404.gif';
+import {Helmet} from 'react-helmet-async';
 
 const PageNotFound = () => {
     return (
         <div className="container">
+            <Helmet>
+                <title>Page Not Found</title>
+            </Helmet>
             <div className='row justify-content-center align-items-center'>
                 <div className="col-lg-5 text-center">
                     <img src={pageNotFoundImg} alt="page not found" className='w-100'/>

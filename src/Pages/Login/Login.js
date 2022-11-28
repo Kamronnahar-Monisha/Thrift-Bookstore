@@ -7,6 +7,7 @@ import loginImg from '../../images/Sign in.gif';
 import useToken from '../../hooks/useToken';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import {Helmet} from 'react-helmet-async';
 
 const Login = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
@@ -39,8 +40,8 @@ const Login = () => {
         setLoginError('');
         signInWithGoogle()
             .then((result) => {
-                const {displayName,email} = result.user;
-                saveUser(displayName, email,'buyer');
+                const { displayName, email } = result.user;
+                saveUser(displayName, email, 'buyer');
             })
             .catch((error) => {
                 toast.error(error.message);
@@ -48,12 +49,12 @@ const Login = () => {
     }
 
     const saveUser = (name, email, role) => {
-        const user = { 
-             name,
-             email,
-             role, 
-             "verified":false 
-            };
+        const user = {
+            name,
+            email,
+            role,
+            "verified": false
+        };
         fetch('https://thrift-bookstore-server-side.vercel.app/users', {
             method: 'POST',
             headers: {
@@ -69,6 +70,9 @@ const Login = () => {
 
     return (
         <div className='container py-5'>
+            <Helmet>
+                <title>Please Login</title>
+            </Helmet>
             <div className="row justify-content-around align-items-center pb-5 pt-4 gy-5">
                 <div className="col-lg-5">
                     <img src={loginImg} alt="A girl log in a website" className='w-100' />

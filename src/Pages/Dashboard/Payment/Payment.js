@@ -7,6 +7,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { useLogOutTheUser } from '../../../hooks/useLogOutTheUser';
 import Loader from '../../Shared/Loader/Loader';
 import CheckoutForm from './CheckoutForm';
+import {Helmet} from 'react-helmet-async';
 
 
 
@@ -41,6 +42,9 @@ const Payment = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Purchase Your Product</title>
+            </Helmet>
             <h3>Payment for {product.name}</h3>
             <p className="">Please pay <strong>${product.resalePrice}</strong> for purchasing your Order</p>
             <div className='w-75 my-5'>

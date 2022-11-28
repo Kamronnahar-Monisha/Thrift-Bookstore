@@ -5,10 +5,11 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../Shared/Loader/Loader';
 import CategoryProduct from './CategoryProduct/CategoryProduct';
 import ProductModal from './ProductModal/ProductModal';
+import {Helmet} from 'react-helmet-async';
 
 const CategoryProducts = () => {
     const { id: categoryId } = useParams();
-    const [modalProduct,setModalProduct]=useState({});
+    const [modalProduct, setModalProduct] = useState({});
 
     const { data: categoryProducts = [], refetch, isLoading } = useQuery({
         queryKey: ['categoryProducts', categoryId],
@@ -21,6 +22,9 @@ const CategoryProducts = () => {
 
     return (
         <div className='categoryProducts my-5'>
+            <Helmet>
+                <title>Products List</title>
+            </Helmet>
             <h3 className='theme-color-gray text-center'>Products Collection</h3>
             <hr className='custom-hr mt-3' />
             <div className="container">
