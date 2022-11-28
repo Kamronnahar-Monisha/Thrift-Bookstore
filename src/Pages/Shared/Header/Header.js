@@ -30,7 +30,7 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                            <li className="nav-item ms-3">
                                 <Link className="nav-link text-white" to="/home">Home</Link>
                             </li>
                             <li className="nav-item ms-3">

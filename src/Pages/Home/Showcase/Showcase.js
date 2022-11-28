@@ -19,8 +19,8 @@ const Showcase = () => {
     return (
         <div className='showcase my-5'>
             <div className="container">
-                <div className="row justify-content-center align-items-center">
-                    <div className="col-lg-5">
+                <div className="row justify-content-center align-items-center gy-5">
+                    <div className="col-lg-5 text-center text-lg-start">
                         <h3>Welcome To</h3>
                         <h3> <span>Thrift </span>Bookstore</h3>
                         <p className='text-muted'>
