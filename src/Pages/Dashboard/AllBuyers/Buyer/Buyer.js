@@ -36,7 +36,7 @@ const Buyer = ({ buyer, refetch }) => {
     }
     return (
         <tr className='text-muted'>
-            <td className='d-none d-md-block'>{name}</td>
+            <td>{name}</td>
             <td>{email}</td>
             <td>
                 <button className='btn-sm theme-button' onClick={handleUserDelete}>Delete</button>
