@@ -40,7 +40,7 @@ const MyOrderCard = ({ order}) => {
                         order.paid ?
                             <button className='btn-sm theme-button' disabled> Paid</button>
                             :
-                            <Link to='/purchase'>
+                            <Link to={`/dashboard/payment/${order._id}`}>
                                 <button className='btn-sm theme-button'> Pay</button>
                             </Link>
 

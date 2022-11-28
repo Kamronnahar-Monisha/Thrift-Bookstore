@@ -9,6 +9,7 @@ import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers/AllSellers";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyOrder from "../Pages/Dashboard/MyOrder/MyOrder/MyOrder";
 import MyProduct from "../Pages/Dashboard/MyProduct/MyProduct/MyProduct";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 import WishList from "../Pages/Dashboard/WishList/WishList/WishList";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -42,12 +43,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/categories/:id',
-                element:<PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
+                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
             },
             {
                 path: '/blog',
                 element: <Blog></Blog>
-            },   
+            },
         ]
     },
     {
@@ -56,35 +57,44 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: '/dashboard',
-                element:<Dashboard></Dashboard>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: '/dashboard/allSellers',
-                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: '/dashboard/allBuyers',
-                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path: '/dashboard/addAProduct',
-                element:<SellerRoute><AddAProduct></AddAProduct></SellerRoute>
+                element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myProduct',
-                element:<SellerRoute><MyProduct></MyProduct></SellerRoute>
+                element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myBuyers',
-                element:<Dashboard></Dashboard>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: '/dashboard/myOrders',
-                element:<BuyerRoute><MyOrder></MyOrder></BuyerRoute>
+                element: <BuyerRoute><MyOrder></MyOrder></BuyerRoute>
             },
             {
                 path: '/dashboard/myWishlist',
-                element:<BuyerRoute><WishList></WishList></BuyerRoute>
+                element: <BuyerRoute><WishList></WishList></BuyerRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/orders/${params.id}`, {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
             },
         ]
     },
